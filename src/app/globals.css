@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8f4ed;
+  --foreground: #1e2422;
+  --surface: #fffdf9;
+  --surface-strong: #f0e8dc;
+  --line: rgba(30, 36, 34, 0.1);
+  --line-strong: rgba(30, 36, 34, 0.18);
+  --brand: #214d48;
+  --brand-soft: #dfe8e5;
+  --accent: #8a4f39;
+  --accent-soft: #eed8cf;
+  --muted: #5d665f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at top right, rgba(138, 79, 57, 0.08), transparent 28%),
+    radial-gradient(circle at left 20%, rgba(33, 77, 72, 0.08), transparent 26%),
+    linear-gradient(180deg, #fbf8f2 0%, #f5eee5 100%);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), serif;
+  letter-spacing: -0.02em;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+::selection {
+  background: rgba(33, 77, 72, 0.16);
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.page-shell {
+  position: relative;
+}
+
+.section-shell {
+  width: 100%;
+  padding: 5rem 0;
+}
+
+.section-shell-lg {
+  width: 100%;
+  padding: 6rem 0;
+}
+
+.container-shell {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.surface-card {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 22px 60px rgba(18, 24, 28, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+.hero-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 26px 90px rgba(2, 6, 23, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--brand);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 16px 42px rgba(33, 77, 72, 0.22);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  background: #173d39;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  border-color: rgba(33, 77, 72, 0.28);
+  background: white;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-weight: 700;
+}
+
+.btn-ghost:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.image-panel {
+  overflow: hidden;
+  border-radius: 1.75rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #f3ece0, #fffdf9);
+  box-shadow: 0 28px 90px rgba(18, 24, 28, 0.08);
+}
+
+.metric-card {
+  border-radius: 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1.1rem 1rem;
+  backdrop-filter: blur(8px);
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(33, 77, 72, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(33, 77, 72, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@media (min-width: 640px) {
+  .container-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-shell {
+    padding-inline: 2rem;
+  }
+}
+
+/* Luxury Motion & Premium Transitions System */
+
+.transition-luxury {
+  transition: all 650ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-up-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUpReveal 850ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeUpReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.luxury-image-zoom {
+  overflow: hidden;
+}
+
+.luxury-image-zoom img {
+  transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.luxury-image-zoom:hover img {
+  transform: scale(1.045);
+}
+
+/* Floating Glassmorphism Premium Utilities */
+.glass-card-premium {
+  background: rgba(255, 253, 249, 0.65) !important;
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.01),
+    0 24px 68px rgba(30, 36, 34, 0.08) !important;
+}
+
+.glass-card-premium-dark {
+  background: rgba(30, 36, 34, 0.12) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.03),
+    0 30px 70px rgba(6, 12, 16, 0.22) !important;
+}
+
+/* Card hover lift effect */
+.hover-lift-premium {
+  transition: transform 550ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 550ms cubic-bezier(0.16, 1, 0.3, 1), border-color 550ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift-premium:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 24px 60px rgba(18, 24, 28, 0.12) !important;
+  border-color: rgba(33, 77, 72, 0.22) !important;
+}
+
+/* Custom staggered animation helper */
+.stagger-1 { animation-delay: 100ms; }
+.stagger-2 { animation-delay: 200ms; }
+.stagger-3 { animation-delay: 300ms; }
+.stagger-4 { animation-delay: 400ms; }
+
