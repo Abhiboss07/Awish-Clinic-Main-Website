@@ -1,4 +1,4 @@
-# <p align="center">🌿 Awish Clinic — Symmetrical Premium Platform 🌿</p>
+# <p align="center">🌿 Awish Clinic — Premium Clinic Platform 🌿</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-16.2.2-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
