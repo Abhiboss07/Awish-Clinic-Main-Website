@@ -329,16 +329,16 @@ export default function FAQChatbot() {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="fixed bottom-6 right-5 z-50 inline-flex items-center gap-3 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(15,29,35,0.94)] px-4 py-3 text-sm font-semibold text-white shadow-[0_22px_60px_rgba(10,18,22,0.28)] backdrop-blur transition hover:bg-[rgba(15,29,35,1)]"
+        className="fixed bottom-6 right-5 z-50 inline-flex items-center gap-2 rounded-full border border-[rgba(33,77,72,0.3)] bg-[rgba(15,31,28,0.85)] px-3 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur hover:bg-[rgba(15,31,28,0.95)] hover:scale-105 transition-all duration-300"
         aria-expanded={open}
         aria-label="Open FAQ chatbot"
       >
-        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--brand)] text-white">
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--brand)] text-white">
+          <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-4l-4 4v-4z" />
           </svg>
         </span>
-        FAQ Chatbot
+        <span className="pr-0.5">AI Chat</span>
       </button>
     </>
   );
