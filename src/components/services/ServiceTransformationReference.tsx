@@ -23,7 +23,8 @@ interface Marker {
 }
 
 interface GenderVisual {
-  image: string;
+  beforeImage: string;
+  afterImage: string;
   alt: string;
   objectPosition?: string;
 }
@@ -44,37 +45,85 @@ interface VisualConfig {
 const pexels = (id: number, width = 1600) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}`;
 
+// Real Human before/after images mapped according to service categories
 const portraitLibrary = {
-  maleFace: {
-    image: pexels(13846403),
-    alt: "Close-up portrait of a man for service transformation reference.",
+  // Hairline Recession mapping
+  maleHair: {
+    beforeImage: pexels(5069609), // Thinner front/receding hair
+    afterImage: pexels(13846403), // Tighter, fuller hair framing
+    alt: "Male hairline restoration comparison",
     objectPosition: "center 22%",
   },
-  femaleFace: {
-    image: pexels(7955853),
-    alt: "Close-up portrait of a woman for service transformation reference.",
+  femaleHair: {
+    beforeImage: pexels(3785147), // Sparsity along front parts
+    afterImage: pexels(7955853), // Denser front hairline framing
+    alt: "Female hairline restoration comparison",
     objectPosition: "center 18%",
   },
-  maleMature: {
-    image: pexels(10409579),
-    alt: "Close-up portrait of a mature man for ageing-care transformation reference.",
+
+  // Face Aging mapping
+  maleAging: {
+    beforeImage: pexels(8373722), // Signs of fatigue and lines
+    afterImage: pexels(10409579), // Lifted, refreshed mature profile
+    alt: "Male age-defying treatment comparison",
     objectPosition: "center 20%",
   },
-  femaleMature: {
-    image: pexels(31599607),
-    alt: "Close-up portrait of a mature woman for ageing-care transformation reference.",
+  femaleAging: {
+    beforeImage: pexels(3763114), // Aging signs, lines, and volume loss
+    afterImage: pexels(31599607), // Refreshed, lifted, and tightened contour
+    alt: "Female age-defying treatment comparison",
     objectPosition: "center 18%",
   },
-  maleBody: {
-    image: pexels(9750462),
-    alt: "Male torso portrait for body contour service reference.",
+
+  // Skin Clarity and Tone mapping
+  maleSkin: {
+    beforeImage: pexels(5069609), // Uneven tone, dullness, or scars
+    afterImage: pexels(13846403), // Flawless, bright, and polished face
+    alt: "Male skin rejuvenation comparison",
+    objectPosition: "center 22%",
+  },
+  femaleSkin: {
+    beforeImage: pexels(3785147), // Texture marks and dull tone
+    afterImage: pexels(7955853), // Glowing, bright, and spotless skin finish
+    alt: "Female skin rejuvenation comparison",
     objectPosition: "center 18%",
   },
-  femaleBody: {
-    image: "/images/services/female.png",
-    alt: "Female upper-body portrait for body contour service reference.",
+
+  // Smooth Finish Laser mapping
+  maleSmooth: {
+    beforeImage: pexels(4058223), // Heavy body hair regrowth
+    afterImage: pexels(9750462), // Clean, smooth, hair-free chest contour
+    alt: "Male laser hair removal smooth finish comparison",
     objectPosition: "center 18%",
   },
+  femaleSmooth: {
+    beforeImage: pexels(5327534), // Rough cycles of regrowth
+    afterImage: pexels(3757376), // Smooth, hair-free body contour
+    alt: "Female laser hair removal smooth finish comparison",
+    objectPosition: "center 18%",
+  },
+
+  // Body Contouring (Weight / Overweight Treatment / Reduction)
+  maleBodyContour: {
+    beforeImage: pexels(4753996), // Heavy abdominal area / less defined shape
+    afterImage: pexels(9750462), // Toned, defined chest and abdomen contour
+    alt: "Male body contour and weight management comparison",
+    objectPosition: "center 18%",
+  },
+  femaleBodyContour: {
+    beforeImage: pexels(5327534), // Heaviness around waist / less defined outline
+    afterImage: pexels(3757376), // Sculpted, perfectly defined waist and silhouette
+    alt: "Female body contour and weight management comparison",
+    objectPosition: "center 18%",
+  },
+
+  // Posture & Proportion Balance (Breast Reduction / Care)
+  femaleBreastContour: {
+    beforeImage: pexels(4058359), // Back strain, posture fatigue, and heavy profile discomfort
+    afterImage: pexels(3755924), // Elegant, upright, and perfectly proportioned upper silhouette
+    alt: "Female breast care posture and proportion balance comparison",
+    objectPosition: "center 18%",
+  }
 };
 
 function getVisualConfig(service: Service): VisualConfig {
@@ -97,8 +146,8 @@ function getVisualConfig(service: Service): VisualConfig {
         ],
         defaultOption: "male",
         visuals: {
-          male: portraitLibrary.maleFace,
-          female: portraitLibrary.femaleFace,
+          male: portraitLibrary.maleHair,
+          female: portraitLibrary.femaleHair,
         },
       };
     case "facelift":
@@ -121,8 +170,8 @@ function getVisualConfig(service: Service): VisualConfig {
         ],
         defaultOption: service.targetAudience.gender === "female" ? "female" : "male",
         visuals: {
-          male: portraitLibrary.maleMature,
-          female: portraitLibrary.femaleMature,
+          male: portraitLibrary.maleAging,
+          female: portraitLibrary.femaleAging,
         },
       };
     case "white-glow":
@@ -146,8 +195,8 @@ function getVisualConfig(service: Service): VisualConfig {
         ],
         defaultOption: service.targetAudience.gender === "female" ? "female" : "male",
         visuals: {
-          male: portraitLibrary.maleFace,
-          female: portraitLibrary.femaleFace,
+          male: portraitLibrary.maleSkin,
+          female: portraitLibrary.femaleSkin,
         },
       };
     case "laser-hair-removal":
@@ -168,8 +217,8 @@ function getVisualConfig(service: Service): VisualConfig {
         ],
         defaultOption: service.targetAudience.gender === "female" ? "female" : "male",
         visuals: {
-          male: portraitLibrary.maleBody,
-          female: portraitLibrary.femaleBody,
+          male: portraitLibrary.maleSmooth,
+          female: portraitLibrary.femaleSmooth,
         },
       };
     case "rhinoplasty":
@@ -191,34 +240,55 @@ function getVisualConfig(service: Service): VisualConfig {
         ],
         defaultOption: service.targetAudience.gender === "female" ? "female" : "male",
         visuals: {
-          male: portraitLibrary.maleFace,
-          female: portraitLibrary.femaleFace,
+          male: portraitLibrary.maleSkin,
+          female: portraitLibrary.femaleSkin,
         },
       };
     case "breast-reduction":
     case "breast-enlargement":
+      return {
+        mode: "body-contour",
+        eyebrow: "Photo reference",
+        title: "A split upper-body visual that reads like a real contour comparison showing posture and volume harmony.",
+        description:
+          "For breast care, the panel utilizes elegant posture and proportion reference comparisons to demonstrate relief from chronic strain and visual alignment.",
+        concernLabel: "Concern side",
+        outcomeLabel: "Balanced side",
+        focusPoints: ["Contour proportion", "Posture strain relief", "Symmetric silhouette"],
+        markers: [
+          { label: "Disproportionate strain", side: "left", top: "22%", align: "left" },
+          { label: "Posture imbalance", side: "left", top: "64%", align: "left" },
+          { label: "Restored balance", side: "right", top: "22%", align: "right" },
+          { label: "Aligned silhouette", side: "right", top: "64%", align: "right" },
+        ],
+        defaultOption: "female",
+        visuals: {
+          male: portraitLibrary.maleBodyContour, // Fallback just in case
+          female: portraitLibrary.femaleBreastContour,
+        },
+      };
     case "overweight-treatment":
     case "non-surgical-weight-reduction":
     case "surgical-weight-reduction":
       return {
         mode: "body-contour",
         eyebrow: "Photo reference",
-        title: "A split upper-body visual that reads like a real contour comparison rather than a drawn avatar.",
+        title: "A split upper-body visual that reads like a real contour comparison showing body mass transformation.",
         description:
-          "For body-led services, the panel now uses a photographic silhouette treatment so the page feels more premium and transformation-oriented.",
+          "For weight-led services, the comparison panel uses actual human before-and-after body contour references to show real metabolic and shape achievements.",
         concernLabel: "Concern side",
         outcomeLabel: "Balanced side",
-        focusPoints: ["Contour", "Proportion", "Cleaner silhouette"],
+        focusPoints: ["Contour definition", "Volume reduction", "Toned silhouette"],
         markers: [
-          { label: "Heaviness or imbalance", side: "left", top: "22%", align: "left" },
+          { label: "Heavy silhouette", side: "left", top: "22%", align: "left" },
           { label: "Less defined contour", side: "left", top: "64%", align: "left" },
-          { label: "Balanced shape", side: "right", top: "22%", align: "right" },
-          { label: "Cleaner silhouette", side: "right", top: "64%", align: "right" },
+          { label: "Sculpted waistline", side: "right", top: "22%", align: "right" },
+          { label: "Toned body framing", side: "right", top: "64%", align: "right" },
         ],
         defaultOption: service.targetAudience.gender === "female" ? "female" : "male",
         visuals: {
-          male: portraitLibrary.maleBody,
-          female: portraitLibrary.femaleBody,
+          male: portraitLibrary.maleBodyContour,
+          female: portraitLibrary.femaleBodyContour,
         },
       };
     case "hymenoplasty":
@@ -239,8 +309,8 @@ function getVisualConfig(service: Service): VisualConfig {
         ],
         defaultOption: "female",
         visuals: {
-          male: portraitLibrary.maleFace,
-          female: portraitLibrary.femaleFace,
+          male: portraitLibrary.maleSkin,
+          female: portraitLibrary.femaleSkin,
         },
       };
     default:
@@ -261,8 +331,8 @@ function getVisualConfig(service: Service): VisualConfig {
         ],
         defaultOption: service.targetAudience.gender === "female" ? "female" : "male",
         visuals: {
-          male: portraitLibrary.maleFace,
-          female: portraitLibrary.femaleFace,
+          male: portraitLibrary.maleSkin,
+          female: portraitLibrary.femaleSkin,
         },
       };
   }
@@ -281,8 +351,8 @@ export default function ServiceTransformationReference({
 
   // Dynamic Before-After Data loading from Service Data Schema
   const beforeAfterData = service.beforeAfter || {
-    beforeImage: visual.image,
-    afterImage: visual.image,
+    beforeImage: visual.beforeImage,
+    afterImage: visual.afterImage,
     beforeLabel: config.concernLabel.toUpperCase(),
     afterLabel: config.outcomeLabel.toUpperCase(),
     title: config.title,
@@ -313,6 +383,11 @@ export default function ServiceTransformationReference({
               <div className="inline-flex w-fit rounded-full border border-[rgba(30,36,34,0.08)] bg-[var(--surface-strong)] p-1">
                 {(["male", "female"] as AudienceOption[]).map((option) => {
                   const active = selectedAudience === option;
+
+                  // Hide options if only female visual is supported (e.g. breast care)
+                  if (config.defaultOption === "female" && option === "male" && service.slug.includes("breast")) {
+                    return null;
+                  }
 
                   return (
                     <button
