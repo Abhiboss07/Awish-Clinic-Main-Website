@@ -9,10 +9,10 @@ import { siteConfig } from "@/data/siteConfig";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Clinic", href: "/clinic" },
-  { label: "About", href: "/about" },
+  { label: "Clinic", href: "/about" },
   { label: "Team", href: "/team" },
   { label: "Services", href: "/services", hasDropdown: true },
+  { label: "Procedures", href: "/procedures" },
   { label: "Blog", href: "/blog" },
   { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },
@@ -62,19 +62,19 @@ export default function Header() {
   return (
     <>
       <div className="border-b border-[rgba(30,36,34,0.08)] bg-[rgba(255,255,255,0.72)] text-xs text-[var(--muted)] backdrop-blur">
-        <div className="max-w-full mx-auto px-6 sm:px-10 lg:px-16 w-full flex flex-wrap items-center justify-between gap-2 py-2">
+        <div className="container-shell flex flex-wrap items-center justify-between gap-2 py-2">
           <p>{siteConfig.positioning.primary}</p>
           <p className="font-semibold text-[var(--brand)]">Available in Delhi NCR, Gurugram and Jaipur</p>
         </div>
       </div>
 
       <header className="sticky top-0 z-40 border-b border-[rgba(30,36,34,0.08)] bg-[rgba(248,244,237,0.88)] backdrop-blur-xl">
-        <div className="max-w-full mx-auto px-6 sm:px-10 lg:px-16 w-full flex items-center justify-between py-4">
-          <Link href="/" className="flex min-w-0 items-center gap-3 lg:mr-6 lg:shrink-0 lg:ml-6 xl:ml-12">
+        <div className="container-shell flex items-center justify-between py-4">
+          <Link href="/" className="flex min-w-0 items-center gap-3 lg:mr-6 lg:shrink-0">
             <BrandLogo />
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex ml-auto mr-8">
+          <nav className="hidden items-center gap-1 lg:flex">
             {navLinks.map((link) =>
               link.hasDropdown ? (
                 <div
@@ -144,6 +144,12 @@ export default function Header() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <a
+              href={`tel:${siteConfig.phone}`}
+              className="rounded-full border border-[rgba(30,36,34,0.12)] px-4 py-2 text-sm font-semibold whitespace-nowrap text-[var(--foreground)] hover:bg-white"
+            >
+              {siteConfig.phone}
+            </a>
             <Button href="/contact#enquiry-form" size="md">
               Book Consultation
             </Button>
@@ -230,6 +236,9 @@ export default function Header() {
             </div>
 
             <div className="mt-8 space-y-3">
+              <Button href={`tel:${siteConfig.phone}`} variant="call" className="w-full">
+                {siteConfig.phone}
+              </Button>
               <Button href="/contact#enquiry-form" className="w-full">
                 Book Consultation
               </Button>
