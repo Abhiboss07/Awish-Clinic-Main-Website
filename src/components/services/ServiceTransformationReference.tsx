@@ -83,8 +83,8 @@ const portraitLibrary = {
     objectPosition: "center 22%",
   },
   femaleSkin: {
-    beforeImage: pexels(3785147), // Texture marks and dull tone
-    afterImage: pexels(7955853), // Glowing, bright, and spotless skin finish
+    beforeImage: "/images/services/before_skin_rejuvenation.png",
+    afterImage: "/images/services/after_skin_rejuvenation.png",
     alt: "Female skin rejuvenation comparison",
     objectPosition: "center 18%",
   },
